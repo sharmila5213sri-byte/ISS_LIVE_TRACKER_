@@ -14,7 +14,7 @@ let refreshTimer = null
 // ── Fetch the ISS's current position ────────────────────────────
 async function fetchISSLocation() {
   try {
-    const response = await fetch('http://api.open-notify.org/iss-now.json')
+    const response = await fetch('https://api.open-notify.org/iss-now.json')
     if (!response.ok) throw new Error('Network response was not ok')
 
     const data = await response.json()
