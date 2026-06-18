@@ -14,15 +14,13 @@ let refreshTimer = null
 // ── Fetch the ISS's current position ────────────────────────────
 async function fetchISSLocation() {
   try {
-    const response = await fetch('https://api.open-notify.org/iss-now.json')
+    const response = await fetch('https://api.wheretheiss.at/v1/satellites/25544')
     if (!response.ok) throw new Error('Network response was not ok')
 
     const data = await response.json()
 
-    latitude.value = parseFloat(data.iss_position.latitude)
-    longitude.value = parseFloat(data.iss_position.longitude)
-    lastUpdated.value = new Date(data.timestamp * 1000).toLocaleTimeString()
-    error.value = null
+    latitude.value = data.latitude
+    longitude.value = data.longitude
 
     // Keep a short trail of recent positions (max 5)
     history.value.push({ lat: latitude.value, lon: longitude.value })
